@@ -18,37 +18,32 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // ----------------------------------------------------------------
 
-using NUnit.Framework;
-using Should;
-using Skyrim.Manager.Common;
+using System;
+using System.Collections.Generic;
 
-namespace Skyrim.Manager.Tests.Saves
+namespace Skyrim.Manager.Common
 {
-	// ReSharper disable InconsistentNaming
-	// ReSharper disable PossibleNullReferenceException
-
-	[TestFixture]
-	public class SaveManagerFixture
+	public class SaveManager
 	{
-		[SetUp]
-		public void Setup()
+		public SaveManager()
 		{
-			SUT = new SaveManager();
+			Characters = new List<string>();
 		}
 
-		private SaveManager SUT;
+		#region Public Properties
 
-		[Test]
-		public void Load_Characters_CharactersNotEmpty()
+		public IEnumerable<String> Characters { get; set; }
+
+		#endregion
+
+		#region Public Methods
+
+		public void Load()
 		{
-			// Arrange
-			SUT.Load();
 
-			// Assert
-			SUT.Characters.ShouldNotBeEmpty();
 		}
+
+		#endregion
+
 	}
-
-	// ReSharper enable InconsistentNaming
-	// ReSharper enable PossibleNullReferenceException
 }
