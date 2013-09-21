@@ -40,7 +40,7 @@ namespace Skyrim.Manager.Common
 
 		public void Load()
 		{
-
+			// 
 		}
 
 		#endregion
