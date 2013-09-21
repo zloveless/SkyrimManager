@@ -39,7 +39,7 @@ namespace Skyrim.Manager.Tests.Saves
 		private SaveManager SUT;
 
 		[Test]
-		public void Load_Characters_CharactersNotEmpty()
+		public void Load_Characters_NotEmpty()
 		{
 			// Arrange
 			SUT.Load();
