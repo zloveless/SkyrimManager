@@ -32,7 +32,7 @@ namespace Skyrim.Manager.Common
 
 		#region Public Properties
 
-		public IEnumerable<String> Characters { get; set; }
+		public IList<String> Characters { get; set; }
 
 		#endregion
 
@@ -40,7 +40,7 @@ namespace Skyrim.Manager.Common
 
 		public void Load()
 		{
-			// 
+			Characters.Add(string.Empty);
 		}
 
 		#endregion

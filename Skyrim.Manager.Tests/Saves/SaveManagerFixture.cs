@@ -47,6 +47,8 @@ namespace Skyrim.Manager.Tests.Saves
 			// Assert
 			SUT.Characters.ShouldNotBeEmpty();
 		}
+
+
 	}
 
 	// ReSharper enable InconsistentNaming
