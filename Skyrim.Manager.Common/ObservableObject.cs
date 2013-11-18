@@ -17,33 +17,19 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // ----------------------------------------------------------------
-
-using System;
-using System.Collections.Generic;
-
 namespace Skyrim.Manager.Common
 {
-	public class SaveManager
+	using System.ComponentModel;
+	using System.Runtime.CompilerServices;
+
+	public class ObservableObject : INotifyPropertyChanged
 	{
-		public SaveManager()
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
-			Characters = new List<string>();
+			var handler = PropertyChanged;
+			if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
 		}
-
-		#region Public Properties
-
-		public IList<String> Characters { get; set; }
-
-		#endregion
-
-		#region Public Methods
-
-		public void Load()
-		{
-			// 
-		}
-
-		#endregion
-
 	}
 }

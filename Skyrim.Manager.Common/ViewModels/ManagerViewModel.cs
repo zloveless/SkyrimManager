@@ -19,8 +19,19 @@
 // ----------------------------------------------------------------
 namespace Skyrim.Manager.Common.ViewModels
 {
-	public class ManagerViewModel
+	using System;
+	using System.Collections.Generic;
+
+	public class ManagerViewModel : ObservableObject
 	{
-		 
+		private SaveManager savesManager;
+
+		private IList<String> characters;
+
+		public IList<String> Characters
+		{
+			get { return savesManager.Characters; }
+		}
+
 	}
 }

@@ -48,7 +48,7 @@
 				<Separator />
 				<MenuItem Header="_Reload Paths" IsEnabled="False" InputGestureText="ALT+R" />
 				<Separator />
-				<MenuItem Header="Remain Open" IsCheckable="True" IsChecked="{Binding Path=KeepOpen,FallbackValue=True}" />
+				<MenuItem Header="Remain Open" IsCheckable="True" IsChecked="{Binding Path=KeepOpen, FallbackValue=True}" />
 				<MenuItem Header="Sa_ve Settings" IsCheckable="True" IsChecked="{Binding Path=AutoSave,FallbackValue=True}" />
 				<Separator />
 				<MenuItem Header="E_xit" InputGestureText="ALT+F4" Command="{Binding ExitCommand}" />
@@ -82,7 +82,7 @@
 				<Label Foreground="WhiteSmoke" DockPanel.Dock="Left" Content="Select a Character:" />
 				<Button DockPanel.Dock="Right" IsEnabled="False" Content="Manage" />
 				<ComboBox SelectedItem="{Binding Character.Current, UpdateSourceTrigger=PropertyChanged}"
-                          ItemsSource="{Binding Character.Characters}" />
+                          ItemsSource="{Binding Characters}" />
 			</DockPanel>
 			
 			<Image Grid.Row="1" Source="/Skyrim.Manager;component/Images/skyrimlogo.png" Margin="0,8" />
