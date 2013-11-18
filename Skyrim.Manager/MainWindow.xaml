@@ -1,0 +1,117 @@
+﻿<Window x:Class="Skyrim.Manager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:viewModels="clr-namespace:Skyrim.Manager.Common.ViewModels;assembly=Skyrim.Manager.Common"
+		mc:Ignorable="d"
+        Title="MainWindow"
+		d:DataContext="{d:DesignInstance Type=viewModels:ManagerViewModel, IsDesignTimeCreatable = True}"
+		WindowStartupLocation="CenterScreen" SizeToContent="Height"
+		Height="400" Width="350" MinHeight="250">
+
+	<Window.Resources>
+		<Style TargetType="{x:Type Button}">
+			<Setter Property="Margin" Value="2,0" />
+			<Setter Property="Padding" Value="5,0" />
+		</Style>
+
+		<Style x:Key="LaunchButtonStyle" TargetType="{x:Type Button}">
+			<Setter Property="Margin" Value="3,2" />
+			<Setter Property="Padding" Value="0,2" />
+			<Setter Property="FontSize" Value="12" />
+		</Style>
+
+		<Style x:Key="StatusDegree" TargetType="{x:Type StatusBar}">
+			<Style.Triggers>
+				<DataTrigger Binding="{Binding Log.IsError}" Value="True">
+					<Setter Property="Background" Value="DarkRed" />
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+
+		<Style x:Key="StatusDegreeText" TargetType="{x:Type TextBlock}">
+			<Style.Triggers>
+				<DataTrigger Binding="{Binding Log.IsError}" Value="True">
+					<Setter Property="Foreground" Value="WhiteSmoke" />
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+	</Window.Resources>
+
+	<DockPanel Background="Black">
+		<Menu DockPanel.Dock="Top" IsMainMenu="True">
+			<MenuItem Header="_File">
+				<MenuItem Header="Manage _Characters" InputGestureText="ALT+C" />
+				<MenuItem Header="Manage _Mods" IsEnabled="False" InputGestureText="ALT+M" />
+				<MenuItem Header="Edit Settings" InputGestureText="ALT+S" />
+				<Separator />
+				<MenuItem Header="_Reload Paths" IsEnabled="False" InputGestureText="ALT+R" />
+				<Separator />
+				<MenuItem Header="Remain Open" IsCheckable="True" IsChecked="{Binding Path=KeepOpen,FallbackValue=True}" />
+				<MenuItem Header="Sa_ve Settings" IsCheckable="True" IsChecked="{Binding Path=AutoSave,FallbackValue=True}" />
+				<Separator />
+				<MenuItem Header="E_xit" InputGestureText="ALT+F4" Command="{Binding ExitCommand}" />
+			</MenuItem>
+			<MenuItem Header="He_lp">
+				<MenuItem Header="Check for _Updates" IsEnabled="False" />
+				<MenuItem Header="_About" />
+			</MenuItem>
+		</Menu>
+
+		<StatusBar Style="{StaticResource StatusDegree}" DockPanel.Dock="Bottom">
+			<StatusBarItem HorizontalAlignment="Left">
+				<TextBlock Style="{StaticResource StatusDegreeText}" Text="{Binding Character.Current}" />
+			</StatusBarItem>
+
+			<!--<StatusBarItem HorizontalAlignment="Right">
+				<TextBlock Visibility="{Binding Log.IsError,Converter={StaticResource BooleanVisibilityConverterResource}}"
+                           Style="{StaticResource StatusDegreeText}" Text="{Binding Log.Message}" />
+			</StatusBarItem>-->
+		</StatusBar>
+
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<DockPanel Grid.Row="0" Margin="0,2" LastChildFill="True">
+				<Label Foreground="WhiteSmoke" DockPanel.Dock="Left" Content="Select a Character:" />
+				<Button DockPanel.Dock="Right" IsEnabled="False" Content="Manage" />
+				<ComboBox SelectedItem="{Binding Character.Current, UpdateSourceTrigger=PropertyChanged}"
+                          ItemsSource="{Binding Character.Characters}" />
+			</DockPanel>
+			
+			<Image Grid.Row="1" Source="/Skyrim.Manager;component/Images/skyrimlogo.png" Margin="0,8" />
+
+			<Grid Grid.Row="2" Margin="0,2">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+
+				<Label Grid.Row="0" Grid.Column="0" Foreground="WhiteSmoke" Content="Installation Path:" />
+				<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Skyrim.InstallPath}" />
+				<Button Grid.Row="0" Grid.Column="2" Content="Browse" Command="{Binding Path=Skyrim.BrowseInstallPath, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding Path=Skyrim.InstallPath}" />
+
+				<Label Grid.Row="1" Grid.Column="0"  Foreground="WhiteSmoke" Content="Data Folder:" />
+				<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Skyrim.DataPath}" />
+				<Button Grid.Row="1" Grid.Column="2" Content="Browse" Command="{Binding Path=Skyrim.BrowseDataPath, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding Path=Skyrim.DataPath}" />
+			</Grid>
+
+			<DockPanel Grid.Row="3">
+				<CheckBox DockPanel.Dock="Right" Margin="3,0" VerticalAlignment="Center" Foreground="WhiteSmoke" IsChecked="{Binding KeepOpen}" Content="Keep open?" />
+				<Button Style="{StaticResource LaunchButtonStyle}" Command="{Binding Skyrim.LaunchGame}" Content="Launch" />
+			</DockPanel>
+		</Grid>
+	</DockPanel>
+</Window>
