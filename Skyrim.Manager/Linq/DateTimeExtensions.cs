@@ -22,21 +22,34 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // ----------------------------------------------------------------
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Windows;
+namespace Skyrim.Manager.Linq
+{
+	using System;
 
-[assembly: AssemblyTitle("Skyrim.Manager")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Skyrim Manager")]
-[assembly: AssemblyCopyright("Copyright © 2013")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+	public static partial class Extensions
+	{
+		/// <summary>
+		///     <para>Converts a <see cref="System.Int64" /> into a <see cref="System.DateTime" /> </para>
+		/// </summary>
+		/// <param name="source"></param>
+		/// <returns></returns>
+		public static DateTime FromUnixTimestamp(this long source)
+		{
+			var origin = new DateTime(1970, 1, 1, 0, 0, 0);
 
-[assembly: ComVisible(false)]
-[assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
+			throw new NotImplementedException();
+		}
 
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+		/// <summary>
+		///     <para>Converts a <see cref="System.DateTime" /> into it's corresponding UNIX Timestamp.</para>
+		/// </summary>
+		/// <param name="source"></param>
+		/// <returns></returns>
+		public static long ToUnixTimestamp(this DateTime source)
+		{
+			var origin = new DateTime(1970, 1, 1, 0, 0, 0);
+
+			return Convert.ToInt64(Math.Floor((source.ToUniversalTime() - origin).TotalSeconds));
+		}
+	}
+}

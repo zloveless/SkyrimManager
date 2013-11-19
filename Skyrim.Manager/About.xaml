@@ -1,0 +1,13 @@
+﻿<Window x:Class="Skyrim.Manager.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:viewModels="clr-namespace:Skyrim.Manager.ViewModels"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d"
+		
+		Title="{DynamicResource AboutWindowTitleString}"
+		d:DataContext="{d:DesignInstance Type=viewModels:AboutViewModel, IsDesignTimeCreatable=False}"
+		Height="300" Width="300">
+    <Grid />
+</Window>

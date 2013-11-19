@@ -1,20 +1,25 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">----------------------------------------------------------------&#xD;
-Skyrim Manager&#xD;
-Copyright (c) $CREATED_YEAR$. Zack "Genesis2001" Loveless.&#xD;
+The MIT License (MIT)&#xD;
 &#xD;
+Copyright (c) 2013+ Zack Loveless&#xD;
 Original author(s) for this source file: $USER_NAME$&#xD;
 &#xD;
-This program is free software: you can redistribute it and/or modify&#xD;
-it under the terms of the GNU General Public License as published by&#xD;
-the Free Software Foundation, either version 3 of the License, or&#xD;
-(at your option) any later version.&#xD;
+Permission is hereby granted, free of charge, to any person obtaining a copy&#xD;
+of this software and associated documentation files (the "Software"), to deal&#xD;
+in the Software without restriction, including without limitation the rights&#xD;
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell&#xD;
+copies of the Software, and to permit persons to whom the Software is&#xD;
+furnished to do so, subject to the following conditions:&#xD;
 &#xD;
-This program is distributed in the hope that it will be useful,&#xD;
-but WITHOUT ANY WARRANTY; without even the implied warranty of&#xD;
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#xD;
-GNU General Public License for more details.&#xD;
+The above copyright notice and this permission notice shall be included in all&#xD;
+copies or substantial portions of the Software.&#xD;
 &#xD;
-You should have received a copy of the GNU General Public License&#xD;
-along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.&#xD;
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR&#xD;
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,&#xD;
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE&#xD;
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER&#xD;
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,&#xD;
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE&#xD;
+SOFTWARE.&#xD;
 ----------------------------------------------------------------</s:String></wpf:ResourceDictionary>

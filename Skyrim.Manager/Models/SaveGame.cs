@@ -22,21 +22,42 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // ----------------------------------------------------------------
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Windows;
+namespace Skyrim.Manager.Models
+{
+	using System;
 
-[assembly: AssemblyTitle("Skyrim.Manager")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Skyrim Manager")]
-[assembly: AssemblyCopyright("Copyright © 2013")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+	/// <summary>
+	/// Represents a save game file. 
+	/// </summary>
+	public class SaveGame : ObservableObject
+	{
+		private string path;
 
-[assembly: ComVisible(false)]
-[assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
+		private string characterName;
 
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+		public string CharacterName
+		{
+			get { return characterName; }
+			set
+			{
+				characterName = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public string Path
+		{
+			get { return path; }
+			set
+			{
+				path = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public bool Save()
+		{
+			throw new NotImplementedException();
+		}
+	}
+}

@@ -22,21 +22,36 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // ----------------------------------------------------------------
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Windows;
+namespace Skyrim.Manager.Models
+{
+	using System;
+	using System.Collections.Generic;
+	using System.ComponentModel;
+	using System.Runtime.CompilerServices;
+	using System.Xml.Serialization;
 
-[assembly: AssemblyTitle("Skyrim.Manager")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Skyrim Manager")]
-[assembly: AssemblyCopyright("Copyright © 2013")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+	[Serializable]
+	public class CharacterCollection : List<Character>, INotifyPropertyChanged
+	{
+		private Character current;
 
-[assembly: ComVisible(false)]
-[assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
+		[XmlAttribute("current")]
+		public Character Current
+		{
+			get { return current; }
+			set
+			{
+				current = value;
+				OnPropertyChanged();
+			}
+		}
 
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			var handler = PropertyChanged;
+			if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}

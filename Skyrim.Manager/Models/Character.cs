@@ -22,21 +22,41 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // ----------------------------------------------------------------
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Windows;
+namespace Skyrim.Manager.Models
+{
+	using System.Collections.Generic;
+	using System.Xml.Serialization;
 
-[assembly: AssemblyTitle("Skyrim.Manager")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Skyrim Manager")]
-[assembly: AssemblyCopyright("Copyright © 2013")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+	public class Character : ObservableObject
+	{
+		private string name;
+		private IList<SaveGame> saves;
 
-[assembly: ComVisible(false)]
-[assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
+		public Character()
+		{
+			Saves = new List<SaveGame>();
+		}
 
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+		[XmlAttribute("name")]
+		public string Name
+		{
+			get { return name; }
+			set
+			{
+				name = value;
+				OnPropertyChanged();
+			}
+		}
+
+		[XmlIgnore]
+		public IList<SaveGame> Saves
+		{
+			get { return saves; }
+			private set
+			{
+				saves = value;
+				OnPropertyChanged();
+			}
+		}
+	}
+}
