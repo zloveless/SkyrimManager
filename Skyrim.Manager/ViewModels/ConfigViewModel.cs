@@ -27,9 +27,7 @@ namespace Skyrim.Manager.ViewModels
 	using System.Text;
 	using System.Xml;
 	using System.Xml.Serialization;
-	using IniParser;
-	using IniParser.Model;
-	using IniParser.Parser;
+	using BitFlex.IO;
 	using Ionic.Zip;
 	using Ionic.Zlib;
 	using Linq;
@@ -46,9 +44,7 @@ namespace Skyrim.Manager.ViewModels
 		private string fileName;
 		private ConfigPath paths;
 
-		private FileIniDataParser iniParser;
-		private IniData iniData;
-		private string iniFile;
+		private InitializationFile ini;
 
 		private ConfigViewModel()
 		{
@@ -173,23 +169,14 @@ namespace Skyrim.Manager.ViewModels
 			// [General]
 			// SLocalSavePath = Saves\<CharacterName>
 
-			if (iniParser == null)
+			if (ini == null)
 			{
-				iniParser = new FileIniDataParser();
-				iniFile = Path.Combine(Paths.GameDataPath, "Skyrim.ini");
-				// iniData = iniParser.ReadFile(iniFile, Encoding.UTF8);
+				ini = new InitializationFile(Paths.GameDataPath, "Skyrim.ini");
+				ini.Load();
 			}
 
-			var current = Characters.Current;
-			var dir = string.Format(@"Saves\{0}", current.Name);
-
-			var section = iniData.Sections.GetSectionData("General");
-			var key = section.Keys.GetKeyData("SLocalSavePath");
-
-			if (key == null) section.Keys.AddKey("SLocalSavePath", dir);
-			else key.Value = dir;
-
-			iniParser.SaveFile(iniFile, iniData);
+			ini.Sections["General"].Keys["SLocalSavePath"] = Path.Combine("Saves", Characters.Current.Name);
+			ini.Save();
 		}
 
 		/// <summary>

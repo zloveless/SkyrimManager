@@ -8,7 +8,9 @@
         Title="{DynamicResource AppNameString}"
 		d:DataContext="{d:DesignInstance Type=viewModels:ManagerViewModel, IsDesignTimeCreatable = False}"
 		WindowStartupLocation="CenterScreen" SizeToContent="Height"
-		Height="400" Width="350" MinHeight="250">
+		Icon="/Skyrim.Manager;component/Images/skyrimicon.ico"
+		Height="400" Width="350"
+		MinWidth="350" MinHeight="250">
 	
 	<Window.Resources>
 		<Style TargetType="{x:Type Button}">
@@ -56,7 +58,8 @@
 			<MenuItem Header="He_lp">
 				<MenuItem Header="Check for _Updates" IsEnabled="False" />
 				<MenuItem Header="{DynamicResource AboutWindowTitleString}"
-						  Command="{Binding ShowAboutDialogCommand}" />
+						  Command="{Binding ShowAboutDialogCommand}"
+						  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" />
 			</MenuItem>
 		</Menu>
 		

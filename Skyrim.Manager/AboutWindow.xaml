@@ -7,6 +7,7 @@
 		mc:Ignorable="d"
 		Title="{DynamicResource AboutWindowTitleString}"
 		d:DataContext="{d:DesignInstance Type=viewModels:AboutViewModel, IsDesignTimeCreatable=False}"
+		WindowStartupLocation="CenterOwner"
 		ResizeMode="CanMinimize" Height="300" Width="500">
 
 	<Window.Resources>

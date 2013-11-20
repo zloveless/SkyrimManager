@@ -26,16 +26,11 @@ namespace Skyrim.Manager
 	/// <summary>
 	///     Interaction logic for AboutWindow.xaml
 	/// </summary>
-	public partial class AboutWindow : IDisposable
+	public partial class AboutWindow
 	{
 		public AboutWindow()
 		{
 			InitializeComponent();
-		}
-
-		public void Dispose()
-		{
-			throw new NotImplementedException();
 		}
 	}
 }

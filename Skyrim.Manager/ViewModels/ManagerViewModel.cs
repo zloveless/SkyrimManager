@@ -21,6 +21,7 @@
 namespace Skyrim.Manager.ViewModels
 {
 	using System;
+	using System.Windows;
 	using System.Windows.Forms;
 	using System.Windows.Input;
 	using Commands;
@@ -29,7 +30,6 @@ namespace Skyrim.Manager.ViewModels
 	public class ManagerViewModel : ObservableObject
 	{
 		private readonly ConfigViewModel config;
-		private Character current;
 
 		public ManagerViewModel(ConfigViewModel config, Action<Object> shutdownMethod)
 		{
@@ -59,9 +59,11 @@ namespace Skyrim.Manager.ViewModels
 		/// <param name="obj"></param>
 		public void ShowAboutDialog(object obj)
 		{
-			using (var dialog = new AboutWindow())
+			var owner = obj as Window;
+			if (owner != null)
 			{
-				dialog.ShowInTaskbar = false;
+				var dialog = new AboutWindow {ShowInTaskbar = false, Owner = owner};
+
 				dialog.ShowDialog();
 			}
 		}

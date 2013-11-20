@@ -37,9 +37,6 @@
     <ApplicationIcon>Images\skyrimicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="INIFileParser">
-      <HintPath>..\lib\INIFileParser.dll</HintPath>
-    </Reference>
     <Reference Include="Ionic.Zip">
       <HintPath>..\lib\Ionic.Zip.dll</HintPath>
     </Reference>
@@ -130,6 +127,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Settings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BitFlex.IO\BitFlex.IO.csproj">
+      <Project>{07fea359-fa8a-49f2-92bd-75885fb793a3}</Project>
+      <Name>BitFlex.IO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
