@@ -22,19 +22,21 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // ----------------------------------------------------------------
+
 namespace Skyrim.Manager.Models
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Xml.Serialization;
 
 	public class Character : ObservableObject
 	{
 		private string name;
-		private IList<SaveGame> saves;
+		private List<String> saves;
 
 		public Character()
 		{
-			Saves = new List<SaveGame>();
+			Saves = new List<String>();
 		}
 
 		[XmlAttribute("name")]
@@ -48,8 +50,8 @@ namespace Skyrim.Manager.Models
 			}
 		}
 
-		[XmlIgnore]
-		public IList<SaveGame> Saves
+		[XmlElement("Save")]
+		public List<String> Saves
 		{
 			get { return saves; }
 			private set

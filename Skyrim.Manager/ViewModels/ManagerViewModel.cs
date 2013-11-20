@@ -78,6 +78,7 @@ namespace Skyrim.Manager.ViewModels
 		{
 			using (var dialog = new FolderBrowserDialog())
 			{
+				dialog.RootFolder = Environment.SpecialFolder.MyComputer;
 				dialog.SelectedPath = defaultPath;
 
 				return (dialog.ShowDialog() == DialogResult.OK) ? dialog.SelectedPath : defaultPath;

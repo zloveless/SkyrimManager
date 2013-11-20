@@ -37,6 +37,9 @@
     <ApplicationIcon>Images\skyrimicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\lib\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
@@ -65,7 +68,6 @@
     <Compile Include="Linq\DateTimeExtensions.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\CharacterCollection.cs" />
-    <Compile Include="Models\SaveGame.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\ConfigViewModel.cs" />

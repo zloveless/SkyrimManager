@@ -78,7 +78,6 @@ namespace Skyrim.Manager
 			}
 
 			config = ConfigViewModel.Load(configPath);
-			config.ApplicationData = configPathBase;
 			config.PropertyChanged += ConfigOnPropertyChanged;
 			context = new ManagerViewModel(config, Disposal);
 

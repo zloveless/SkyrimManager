@@ -9,9 +9,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{690D9284-8CBA-4B2E-8B16-3F19570BC1CE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyrim.Manager", "Skyrim.Manager\Skyrim.Manager.csproj", "{047AD6BB-0CB9-48CD-9B61-8267BB5D3610}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{4E06FB0F-AF79-44A7-B362-FA40FC0ECD95}"
+	ProjectSection(SolutionItems) = preProject
+		lib\Ionic.Zip.dll = lib\Ionic.Zip.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
