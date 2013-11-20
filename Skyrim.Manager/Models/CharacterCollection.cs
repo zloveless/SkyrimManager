@@ -48,6 +48,8 @@ namespace Skyrim.Manager.Models
 			this.characters = new List<Character>(characters);
 		}
 
+		#region Properties
+
 		[XmlAttribute("current")]
 		public Character Current
 		{
@@ -55,9 +57,20 @@ namespace Skyrim.Manager.Models
 			set
 			{
 				current = value;
+				OnCurrentCharacterChangedEvent();
 				OnPropertyChanged();
 			}
 		}
+
+		#endregion
+
+		#region Events
+
+		public event EventHandler CurrentCharacterChangedEvent;
+
+		#endregion
+
+		#region Methods
 
 		public bool Contains(string characterName)
 		{
@@ -71,6 +84,14 @@ namespace Skyrim.Manager.Models
 				return !Contains(characterName) ? null : characters.SingleOrDefault(x => x.Name.Equals(characterName, StringComparison.InvariantCultureIgnoreCase));
 			}
 		}
+
+		protected virtual void OnCurrentCharacterChangedEvent()
+		{
+			var handler = CurrentCharacterChangedEvent;
+			if (handler != null) handler(this, EventArgs.Empty);
+		}
+
+		#endregion
 
 		#region Implementation of INotifyPropertyChanged
 

@@ -27,12 +27,9 @@ namespace Skyrim.Manager.ViewModels
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Diagnostics;
 	using System.IO;
 	using System.Security;
-	using System.Security.AccessControl;
 	using System.Text;
-	using System.Windows.Documents;
 	using System.Xml;
 	using System.Xml.Serialization;
 	using Ionic.Zip;
@@ -56,8 +53,10 @@ namespace Skyrim.Manager.ViewModels
 			App = new AppConfig();
 			Characters = new CharacterCollection();
 			Paths = new ConfigPath();
-		}
 
+			Characters.CurrentCharacterChangedEvent += CharacterChangedCallback;
+		}
+		
 		[XmlIgnore]
 		public string ApplicationData
 		{
@@ -113,6 +112,9 @@ namespace Skyrim.Manager.ViewModels
 			}
 		}
 
+		/// <summary>
+		/// Performs a one-time installation setup to configure and Skyrim Manager 
+		/// </summary>
 		public void Install()
 		{
 			InitializeDefaults();
@@ -121,6 +123,9 @@ namespace Skyrim.Manager.ViewModels
 			App.Installed = true;
 		}
 
+		/// <summary>
+		/// Initializes paths to their expected default values. Some variation is inevitable as Steam now allows installing games to different drives.
+		/// </summary>
 		public void InitializeDefaults()
 		{
 			if (App.Installed) return;
@@ -154,6 +159,18 @@ namespace Skyrim.Manager.ViewModels
 			}
 		}
 
+		protected void CharacterChangedCallback(object sender, EventArgs args)
+		{
+			// [General]
+			// SLocalSavePath = Saves\<CharacterName>
+
+
+		}
+
+		/// <summary>
+		/// Archives the specified character, if provided, otherwise backs up the entire saves directory to the pre-defined backup directory.
+		/// </summary>
+		/// <param name="character"></param>
 		public void Backup(Character character = null)
 		{
 			var archiveDirectory = Path.Combine(ApplicationData, "backups");
