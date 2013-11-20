@@ -1,6 +1,6 @@
 ﻿// ----------------------------------------------------------------
 // Skyrim Manager
-// Copyright (c) 2013. Zack "Genesis2001" Loveless.
+// Copyright (c) 2013. Zack Loveless.
 // 
 // Original author(s) for this source file: Zack Loveless
 // 
