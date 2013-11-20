@@ -121,10 +121,13 @@ namespace Skyrim.Manager.ViewModels
 		/// </summary>
 		public void Install()
 		{
-			InitializeDefaults();
-			InitializeCharacters();
+			if (!App.Installed)
+			{
+				InitializeDefaults();
+				InitializeCharacters();
 
-			App.Installed = true;
+				App.Installed = true;
+			}
 		}
 
 		/// <summary>
@@ -236,17 +239,15 @@ namespace Skyrim.Manager.ViewModels
 				foreach (var item in games)
 				{
 					var cName = GetCharacterName(item);
-					Character c;
+					Character c = null;
 					if (!Characters.Contains(cName))
 					{
 						c = new Character {Name = cName};
 						Characters.Add(c);
 					}
-					else
-					{
-						c = Characters[cName];
-						if (c != null) c.Saves.Add(item);
-					}
+
+					if (c == null) c = Characters[cName];
+					if (c != null) c.Saves.Add(item);
 				}
 
 				foreach (var c in Characters)
@@ -276,6 +277,10 @@ namespace Skyrim.Manager.ViewModels
 				}
 			}
 		}
+
+		#endregion
+
+		#region Factory Methods
 
 		public static ConfigViewModel Load(string configPath)
 		{
