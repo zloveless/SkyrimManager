@@ -1,27 +1,23 @@
 ﻿// ----------------------------------------------------------------
-// The MIT License (MIT)
+// Skyrim Manager
+// Copyright (c) 2013. Zack "Genesis2001" Loveless.
 // 
-// Copyright (c) 2013+ Zack Loveless
 // Original author(s) for this source file: Zack Loveless
 // 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 // 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
 // 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // ----------------------------------------------------------------
+
 namespace Skyrim.Manager.Models
 {
 	using System;
@@ -72,17 +68,19 @@ namespace Skyrim.Manager.Models
 
 		#region Methods
 
-		public bool Contains(string characterName)
-		{
-			return characters.Any(x => x.Name.Equals(characterName, StringComparison.InvariantCultureIgnoreCase));
-		}
-
 		public Character this[string characterName]
 		{
 			get
 			{
-				return !Contains(characterName) ? null : characters.SingleOrDefault(x => x.Name.Equals(characterName, StringComparison.InvariantCultureIgnoreCase));
+				return !Contains(characterName)
+					? null
+					: characters.SingleOrDefault(x => x.Name.Equals(characterName, StringComparison.InvariantCultureIgnoreCase));
 			}
+		}
+
+		public bool Contains(string characterName)
+		{
+			return characters.Any(x => x.Name.Equals(characterName, StringComparison.InvariantCultureIgnoreCase));
 		}
 
 		protected virtual void OnCurrentCharacterChangedEvent()
@@ -108,10 +106,10 @@ namespace Skyrim.Manager.Models
 		#region Implementation of IEnumerable
 
 		/// <summary>
-		/// Returns an enumerator that iterates through the collection.
+		///     Returns an enumerator that iterates through the collection.
 		/// </summary>
 		/// <returns>
-		/// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+		///     A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.
 		/// </returns>
 		public IEnumerator<Character> GetEnumerator()
 		{
@@ -119,10 +117,10 @@ namespace Skyrim.Manager.Models
 		}
 
 		/// <summary>
-		/// Returns an enumerator that iterates through a collection.
+		///     Returns an enumerator that iterates through a collection.
 		/// </summary>
 		/// <returns>
-		/// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+		///     An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
 		/// </returns>
 		IEnumerator IEnumerable.GetEnumerator()
 		{
@@ -134,82 +132,104 @@ namespace Skyrim.Manager.Models
 		#region Implementation of ICollection<Character>
 
 		/// <summary>
-		/// Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+		///     Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1" />.
 		/// </summary>
-		/// <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param><exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.</exception>
+		/// <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
+		/// <exception cref="T:System.NotSupportedException">
+		///     The <see cref="T:System.Collections.Generic.ICollection`1" /> is
+		///     read-only.
+		/// </exception>
 		public void Add(Character item)
 		{
 			characters.Add(item);
 		}
 
 		/// <summary>
-		/// Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+		///     Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1" />.
 		/// </summary>
-		/// <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only. </exception>
+		/// <exception cref="T:System.NotSupportedException">
+		///     The <see cref="T:System.Collections.Generic.ICollection`1" /> is
+		///     read-only.
+		/// </exception>
 		public void Clear()
 		{
 			characters.Clear();
 		}
 
 		/// <summary>
-		/// Determines whether the <see cref="T:System.Collections.Generic.ICollection`1"/> contains a specific value.
+		///     Determines whether the <see cref="T:System.Collections.Generic.ICollection`1" /> contains a specific value.
 		/// </summary>
 		/// <returns>
-		/// true if <paramref name="item"/> is found in the <see cref="T:System.Collections.Generic.ICollection`1"/>; otherwise, false.
+		///     true if <paramref name="item" /> is found in the <see cref="T:System.Collections.Generic.ICollection`1" />;
+		///     otherwise, false.
 		/// </returns>
-		/// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
+		/// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
 		public bool Contains(Character item)
 		{
 			return characters.Contains(item);
 		}
 
 		/// <summary>
-		/// Copies the elements of the <see cref="T:System.Collections.Generic.ICollection`1"/> to an <see cref="T:System.Array"/>, starting at a particular <see cref="T:System.Array"/> index.
+		///     Copies the elements of the <see cref="T:System.Collections.Generic.ICollection`1" /> to an
+		///     <see cref="T:System.Array" />, starting at a particular <see cref="T:System.Array" /> index.
 		/// </summary>
-		/// <param name="array">The one-dimensional <see cref="T:System.Array"/> that is the destination of the elements copied from <see cref="T:System.Collections.Generic.ICollection`1"/>. The <see cref="T:System.Array"/> must have zero-based indexing.</param><param name="arrayIndex">The zero-based index in <paramref name="array"/> at which copying begins.</param><exception cref="T:System.ArgumentNullException"><paramref name="array"/> is null.</exception><exception cref="T:System.ArgumentOutOfRangeException"><paramref name="arrayIndex"/> is less than 0.</exception><exception cref="T:System.ArgumentException">The number of elements in the source <see cref="T:System.Collections.Generic.ICollection`1"/> is greater than the available space from <paramref name="arrayIndex"/> to the end of the destination <paramref name="array"/>.</exception>
+		/// <param name="array">
+		///     The one-dimensional <see cref="T:System.Array" /> that is the destination of the elements copied
+		///     from <see cref="T:System.Collections.Generic.ICollection`1" />. The <see cref="T:System.Array" /> must have
+		///     zero-based indexing.
+		/// </param>
+		/// <param name="arrayIndex">The zero-based index in <paramref name="array" /> at which copying begins.</param>
+		/// <exception cref="T:System.ArgumentNullException"><paramref name="array" /> is null.</exception>
+		/// <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="arrayIndex" /> is less than 0.</exception>
+		/// <exception cref="T:System.ArgumentException">
+		///     The number of elements in the source
+		///     <see cref="T:System.Collections.Generic.ICollection`1" /> is greater than the available space from
+		///     <paramref name="arrayIndex" /> to the end of the destination <paramref name="array" />.
+		/// </exception>
 		public void CopyTo(Character[] array, int arrayIndex)
 		{
 			characters.CopyTo(array, arrayIndex);
 		}
 
 		/// <summary>
-		/// Removes the first occurrence of a specific object from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+		///     Removes the first occurrence of a specific object from the
+		///     <see cref="T:System.Collections.Generic.ICollection`1" />.
 		/// </summary>
 		/// <returns>
-		/// true if <paramref name="item"/> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1"/>; otherwise, false. This method also returns false if <paramref name="item"/> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1"/>.
+		///     true if <paramref name="item" /> was successfully removed from the
+		///     <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, false. This method also returns false if
+		///     <paramref name="item" /> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1" />.
 		/// </returns>
-		/// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param><exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.</exception>
+		/// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
+		/// <exception cref="T:System.NotSupportedException">
+		///     The <see cref="T:System.Collections.Generic.ICollection`1" /> is
+		///     read-only.
+		/// </exception>
 		public bool Remove(Character item)
 		{
 			return characters.Remove(item);
 		}
 
 		/// <summary>
-		/// Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+		///     Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.
 		/// </summary>
 		/// <returns>
-		/// The number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+		///     The number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1" />.
 		/// </returns>
 		public int Count
 		{
-			get
-			{
-				return characters.Count;
-			}
+			get { return characters.Count; }
 		}
 
 		/// <summary>
-		/// Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
+		///     Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only.
 		/// </summary>
 		/// <returns>
-		/// true if the <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only; otherwise, false.
+		///     true if the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only; otherwise, false.
 		/// </returns>
 		public bool IsReadOnly
 		{
-			get
-			{
-				return false;
-			}
+			get { return false; }
 		}
 
 		#endregion
@@ -217,42 +237,61 @@ namespace Skyrim.Manager.Models
 		#region Implementation of IList<Character>
 
 		/// <summary>
-		/// Determines the index of a specific item in the <see cref="T:System.Collections.Generic.IList`1"/>.
+		///     Determines the index of a specific item in the <see cref="T:System.Collections.Generic.IList`1" />.
 		/// </summary>
 		/// <returns>
-		/// The index of <paramref name="item"/> if found in the list; otherwise, -1.
+		///     The index of <paramref name="item" /> if found in the list; otherwise, -1.
 		/// </returns>
-		/// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.IList`1"/>.</param>
+		/// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.IList`1" />.</param>
 		public int IndexOf(Character item)
 		{
 			return characters.IndexOf(item);
 		}
 
 		/// <summary>
-		/// Inserts an item to the <see cref="T:System.Collections.Generic.IList`1"/> at the specified index.
+		///     Inserts an item to the <see cref="T:System.Collections.Generic.IList`1" /> at the specified index.
 		/// </summary>
-		/// <param name="index">The zero-based index at which <paramref name="item"/> should be inserted.</param><param name="item">The object to insert into the <see cref="T:System.Collections.Generic.IList`1"/>.</param><exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index"/> is not a valid index in the <see cref="T:System.Collections.Generic.IList`1"/>.</exception><exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.IList`1"/> is read-only.</exception>
+		/// <param name="index">The zero-based index at which <paramref name="item" /> should be inserted.</param>
+		/// <param name="item">The object to insert into the <see cref="T:System.Collections.Generic.IList`1" />.</param>
+		/// <exception cref="T:System.ArgumentOutOfRangeException">
+		///     <paramref name="index" /> is not a valid index in the
+		///     <see cref="T:System.Collections.Generic.IList`1" />.
+		/// </exception>
+		/// <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.IList`1" /> is read-only.</exception>
 		public void Insert(int index, Character item)
 		{
 			characters.Insert(index, item);
 		}
 
 		/// <summary>
-		/// Removes the <see cref="T:System.Collections.Generic.IList`1"/> item at the specified index.
+		///     Removes the <see cref="T:System.Collections.Generic.IList`1" /> item at the specified index.
 		/// </summary>
-		/// <param name="index">The zero-based index of the item to remove.</param><exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index"/> is not a valid index in the <see cref="T:System.Collections.Generic.IList`1"/>.</exception><exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.IList`1"/> is read-only.</exception>
+		/// <param name="index">The zero-based index of the item to remove.</param>
+		/// <exception cref="T:System.ArgumentOutOfRangeException">
+		///     <paramref name="index" /> is not a valid index in the
+		///     <see cref="T:System.Collections.Generic.IList`1" />.
+		/// </exception>
+		/// <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.IList`1" /> is read-only.</exception>
 		public void RemoveAt(int index)
 		{
 			characters.RemoveAt(index);
 		}
 
 		/// <summary>
-		/// Gets or sets the element at the specified index.
+		///     Gets or sets the element at the specified index.
 		/// </summary>
 		/// <returns>
-		/// The element at the specified index.
+		///     The element at the specified index.
 		/// </returns>
-		/// <param name="index">The zero-based index of the element to get or set.</param><exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index"/> is not a valid index in the <see cref="T:System.Collections.Generic.IList`1"/>.</exception><exception cref="T:System.NotSupportedException">The property is set and the <see cref="T:System.Collections.Generic.IList`1"/> is read-only.</exception>
+		/// <param name="index">The zero-based index of the element to get or set.</param>
+		/// <exception cref="T:System.ArgumentOutOfRangeException">
+		///     <paramref name="index" /> is not a valid index in the
+		///     <see cref="T:System.Collections.Generic.IList`1" />.
+		/// </exception>
+		/// <exception cref="T:System.NotSupportedException">
+		///     The property is set and the
+		///     <see cref="T:System.Collections.Generic.IList`1" /> is read-only.
+		/// </exception>
 		public Character this[int index]
 		{
 			get { return characters[index]; }

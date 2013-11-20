@@ -1,26 +1,21 @@
 ﻿// ----------------------------------------------------------------
-// The MIT License (MIT)
+// Skyrim Manager
+// Copyright (c) 2013. Zack "Genesis2001" Loveless.
 // 
-// Copyright (c) 2013+ Zack Loveless
 // Original author(s) for this source file: Zack Loveless
 // 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 // 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
 // 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // ----------------------------------------------------------------
 
 namespace Skyrim.Manager.ViewModels
@@ -56,7 +51,7 @@ namespace Skyrim.Manager.ViewModels
 
 			Characters.CurrentCharacterChangedEvent += CharacterChangedCallback;
 		}
-		
+
 		[XmlIgnore]
 		public string ApplicationData
 		{
@@ -113,7 +108,7 @@ namespace Skyrim.Manager.ViewModels
 		}
 
 		/// <summary>
-		/// Performs a one-time installation setup to configure and Skyrim Manager 
+		///     Performs a one-time installation setup to configure and Skyrim Manager
 		/// </summary>
 		public void Install()
 		{
@@ -124,7 +119,8 @@ namespace Skyrim.Manager.ViewModels
 		}
 
 		/// <summary>
-		/// Initializes paths to their expected default values. Some variation is inevitable as Steam now allows installing games to different drives.
+		///     Initializes paths to their expected default values. Some variation is inevitable as Steam now allows installing
+		///     games to different drives.
 		/// </summary>
 		public void InitializeDefaults()
 		{
@@ -163,12 +159,11 @@ namespace Skyrim.Manager.ViewModels
 		{
 			// [General]
 			// SLocalSavePath = Saves\<CharacterName>
-
-
 		}
 
 		/// <summary>
-		/// Archives the specified character, if provided, otherwise backs up the entire saves directory to the pre-defined backup directory.
+		///     Archives the specified character, if provided, otherwise backs up the entire saves directory to the pre-defined
+		///     backup directory.
 		/// </summary>
 		/// <param name="character"></param>
 		public void Backup(Character character = null)
@@ -182,7 +177,8 @@ namespace Skyrim.Manager.ViewModels
 			if (character == null)
 			{
 				var backupDirectory = Path.Combine(Paths.GameDataPath, "Saves");
-				var archiveFile = Path.Combine(archiveDirectory, string.Format("Characters_FullBackup_{0}.zip", DateTime.Now.ToUnixTimestamp()));
+				var archiveFile = Path.Combine(archiveDirectory,
+					string.Format("Characters_FullBackup_{0}.zip", DateTime.Now.ToUnixTimestamp()));
 
 				using (var zip = new ZipFile(archiveFile, Encoding.UTF8))
 				{
@@ -262,7 +258,7 @@ namespace Skyrim.Manager.ViewModels
 				}
 			}
 		}
-		
+
 		public static ConfigViewModel Load(string configPath)
 		{
 			var serializer = new XmlSerializer(typeof (ConfigViewModel));
