@@ -55,7 +55,8 @@
 			</MenuItem>
 			<MenuItem Header="He_lp">
 				<MenuItem Header="Check for _Updates" IsEnabled="False" />
-				<MenuItem Header="_About" />
+				<MenuItem Header="{DynamicResource AboutWindowTitleString}"
+						  Command="{Binding ShowAboutDialogCommand}" />
 			</MenuItem>
 		</Menu>
 		
@@ -112,8 +113,8 @@
 						  VerticalAlignment="Center" Foreground="WhiteSmoke"
 						  IsChecked="{Binding Config.App.KeepOpen}" Content="Keep open?" />
 				
-				<Button Command="{Binding Skyrim.LaunchGame}" Content="{DynamicResource LaunchString}"
-						Style="{StaticResource LaunchButtonStyle}" />
+				<Button Command="{Binding Skyrim.LaunchGame}"
+						Content="{DynamicResource LaunchString}" Style="{StaticResource LaunchButtonStyle}" />
 			</DockPanel>
 		</Grid>
 	</DockPanel>

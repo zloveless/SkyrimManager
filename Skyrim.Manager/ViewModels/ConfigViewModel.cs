@@ -27,6 +27,9 @@ namespace Skyrim.Manager.ViewModels
 	using System.Text;
 	using System.Xml;
 	using System.Xml.Serialization;
+	using IniParser;
+	using IniParser.Model;
+	using IniParser.Parser;
 	using Ionic.Zip;
 	using Ionic.Zlib;
 	using Linq;
@@ -43,14 +46,20 @@ namespace Skyrim.Manager.ViewModels
 		private string fileName;
 		private ConfigPath paths;
 
+		private FileIniDataParser iniParser;
+		private IniData iniData;
+		private string iniFile;
+
 		private ConfigViewModel()
 		{
 			App = new AppConfig();
 			Characters = new CharacterCollection();
 			Paths = new ConfigPath();
-
+			
 			Characters.CurrentCharacterChangedEvent += CharacterChangedCallback;
 		}
+		
+		#region Properties
 
 		[XmlIgnore]
 		public string ApplicationData
@@ -107,6 +116,10 @@ namespace Skyrim.Manager.ViewModels
 			}
 		}
 
+		#endregion
+
+		#region Methods
+
 		/// <summary>
 		///     Performs a one-time installation setup to configure and Skyrim Manager
 		/// </summary>
@@ -159,6 +172,24 @@ namespace Skyrim.Manager.ViewModels
 		{
 			// [General]
 			// SLocalSavePath = Saves\<CharacterName>
+
+			if (iniParser == null)
+			{
+				iniParser = new FileIniDataParser();
+				iniFile = Path.Combine(Paths.GameDataPath, "Skyrim.ini");
+				// iniData = iniParser.ReadFile(iniFile, Encoding.UTF8);
+			}
+
+			var current = Characters.Current;
+			var dir = string.Format(@"Saves\{0}", current.Name);
+
+			var section = iniData.Sections.GetSectionData("General");
+			var key = section.Keys.GetKeyData("SLocalSavePath");
+
+			if (key == null) section.Keys.AddKey("SLocalSavePath", dir);
+			else key.Value = dir;
+
+			iniParser.SaveFile(iniFile, iniData);
 		}
 
 		/// <summary>
@@ -288,6 +319,10 @@ namespace Skyrim.Manager.ViewModels
 			}
 		}
 
+		#endregion
+
+		#region Nested Type: AppConfig
+
 		public class AppConfig : ObservableObject
 		{
 			private bool autoSave;
@@ -328,6 +363,10 @@ namespace Skyrim.Manager.ViewModels
 			}
 		}
 
+		#endregion
+
+		#region Nested Type: ConfigPath
+
 		public class ConfigPath : ObservableObject
 		{
 			private string gameDataPath;
@@ -355,5 +394,7 @@ namespace Skyrim.Manager.ViewModels
 				}
 			}
 		}
+
+		#endregion
 	}
 }

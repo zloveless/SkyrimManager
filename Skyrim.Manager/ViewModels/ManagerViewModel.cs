@@ -35,18 +35,18 @@ namespace Skyrim.Manager.ViewModels
 		{
 			this.config = config;
 
-			DataPathBrowseCommand = new RelayCommand(o => Config.Paths.GameDataPath = Browse(Config.Paths.GameDataPath),
-				o => true);
 			ExitCommand = new RelayCommand(shutdownMethod, o => true);
-			InstallPathBrowseCommand = new RelayCommand(o => Config.Paths.InstallPath = Browse(Config.Paths.InstallPath),
-				o => true);
+			DataPathBrowseCommand = new RelayCommand(o => Config.Paths.GameDataPath = Browse(Config.Paths.GameDataPath), o => true);
+			InstallPathBrowseCommand = new RelayCommand(o => Config.Paths.InstallPath = Browse(Config.Paths.InstallPath), o => true);
 			SaveCommand = new RelayCommand(o => ConfigViewModel.Save(config, config.FileName), o => true);
+			ShowAboutDialogCommand = new RelayCommand(ShowAboutDialog, o => true);
 		}
 
 		public ICommand DataPathBrowseCommand { get; private set; }
 		public ICommand ExitCommand { get; private set; }
 		public ICommand InstallPathBrowseCommand { get; private set; }
 		public ICommand SaveCommand { get; private set; }
+		public ICommand ShowAboutDialogCommand { get; private set; }
 
 		public ConfigViewModel Config
 		{
@@ -54,16 +54,15 @@ namespace Skyrim.Manager.ViewModels
 		}
 
 		/// <summary>
-		///     Gets or sets a <see cref="T:Skyrim.Manager.Models.Character" /> value representing the currently selected
-		///     character.
+		/// 
 		/// </summary>
-		public Character Current
+		/// <param name="obj"></param>
+		public void ShowAboutDialog(object obj)
 		{
-			get { return current; }
-			set
+			using (var dialog = new AboutWindow())
 			{
-				current = value;
-				OnPropertyChanged();
+				dialog.ShowInTaskbar = false;
+				dialog.ShowDialog();
 			}
 		}
 
