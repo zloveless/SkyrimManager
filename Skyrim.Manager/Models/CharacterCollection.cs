@@ -72,9 +72,7 @@ namespace Skyrim.Manager.Models
 		{
 			get
 			{
-				return !Contains(characterName)
-					? null
-					: characters.SingleOrDefault(x => x.Name.Equals(characterName, StringComparison.InvariantCultureIgnoreCase));
+				return characters.SingleOrDefault(x => x.Name.Equals(characterName, StringComparison.InvariantCultureIgnoreCase));
 			}
 		}
 
@@ -129,7 +127,7 @@ namespace Skyrim.Manager.Models
 
 		#endregion
 
-		#region Implementation of ICollection<Character>
+		#region Implementation of ICollection<Current>
 
 		/// <summary>
 		///     Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1" />.
@@ -234,7 +232,7 @@ namespace Skyrim.Manager.Models
 
 		#endregion
 
-		#region Implementation of IList<Character>
+		#region Implementation of IList<Current>
 
 		/// <summary>
 		///     Determines the index of a specific item in the <see cref="T:System.Collections.Generic.IList`1" />.

@@ -68,6 +68,7 @@
     <Compile Include="Linq\DateTimeExtensions.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\CharacterCollection.cs" />
+    <Compile Include="Models\CharacterManager.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\ConfigViewModel.cs" />

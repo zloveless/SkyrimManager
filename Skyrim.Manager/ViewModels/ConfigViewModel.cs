@@ -40,7 +40,7 @@ namespace Skyrim.Manager.ViewModels
 	{
 		private AppConfig app;
 		private string applicationData;
-		private CharacterCollection characters;
+		private CharacterManager characters;
 		private string fileName;
 		private ConfigPath paths;
 
@@ -49,10 +49,10 @@ namespace Skyrim.Manager.ViewModels
 		private ConfigViewModel()
 		{
 			App = new AppConfig();
-			Characters = new CharacterCollection();
+			Characters = new CharacterManager();
 			Paths = new ConfigPath();
 			
-			Characters.CurrentCharacterChangedEvent += CharacterChangedCallback;
+			// Characters.CurrentCharacterChangedEvent += CharacterChangedCallback;
 		}
 		
 		#region Properties
@@ -101,8 +101,7 @@ namespace Skyrim.Manager.ViewModels
 			}
 		}
 
-		[XmlElement("Characters")]
-		public CharacterCollection Characters
+		public CharacterManager Characters
 		{
 			get { return characters; }
 			set
@@ -270,6 +269,7 @@ namespace Skyrim.Manager.ViewModels
 #else
 						File.Move(s, sNew);
 #endif
+
 					}
 
 					c.Saves.Clear();
