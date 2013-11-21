@@ -69,6 +69,7 @@ namespace Skyrim.Manager.Models
 			set { SetCurrentCharacterByName(value); }
 		} */
 		
+		[XmlAttribute("current")]
 		public Character Current
 		{
 			get { return current; }
